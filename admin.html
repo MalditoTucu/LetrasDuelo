@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de administración — Letras</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main id="admin-app" class="admin-app">
+    <section id="login-section" class="panel-section" hidden>
+      <h1>Panel de administración</h1>
+      <form id="login-form" class="admin-form">
+        <label>
+          Email
+          <input type="email" id="login-email" required autocomplete="username" />
+        </label>
+        <label>
+          Contraseña
+          <input type="password" id="login-password" required autocomplete="current-password" />
+        </label>
+        <button type="submit" class="choice-btn">Ingresar</button>
+      </form>
+      <p id="login-error" class="error-box" hidden></p>
+    </section>
+
+    <section id="panel-section" class="panel-section" hidden>
+      <header class="panel-header">
+        <h1>Panel de administración</h1>
+        <button type="button" id="logout-btn" class="logout-btn">Salir</button>
+      </header>
+
+      <form id="letra-form" class="admin-form">
+        <label>
+          Letra
+          <textarea id="input-letra" rows="4" required></textarea>
+        </label>
+        <label>
+          Artista
+          <input type="text" id="input-artista" required />
+        </label>
+        <label>
+          Canción
+          <input type="text" id="input-cancion" required />
+        </label>
+        <label>
+          Dificultad
+          <select id="input-dificultad">
+            <option value="facil">Fácil</option>
+            <option value="media" selected>Media</option>
+            <option value="dificil">Difícil</option>
+          </select>
+        </label>
+        <button type="submit" class="choice-btn">Agregar letra</button>
+      </form>
+
+      <p id="form-error" class="error-box" hidden></p>
+      <p id="form-status" class="status-box" role="status" hidden></p>
+
+      <section class="letras-list-section">
+        <h2>Letras cargadas</h2>
+        <p id="list-loading" role="status">Cargando…</p>
+        <p id="list-empty" hidden>Todavía no hay letras cargadas.</p>
+        <div class="table-wrap">
+          <table id="letras-table" hidden>
+            <thead>
+              <tr>
+                <th>Letra</th>
+                <th>Artista</th>
+                <th>Canción</th>
+                <th>Dificultad</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="letras-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

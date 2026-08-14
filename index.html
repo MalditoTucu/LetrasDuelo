@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿De quién es esta letra?</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main id="app">
+    <p id="loading" role="status">Cargando letras…</p>
+
+    <p id="error-message" class="error-box" hidden></p>
+
+    <section id="game" hidden>
+      <div class="scoreboard">
+        <span class="score-item">Puntaje <strong id="score">0</strong></span>
+        <span class="score-item">Récord <strong id="record">0</strong></span>
+      </div>
+
+      <blockquote id="lyric" class="lyric"></blockquote>
+
+      <div class="choices">
+        <button type="button" id="choice-a" class="choice-btn"></button>
+        <button type="button" id="choice-b" class="choice-btn"></button>
+      </div>
+
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section id="game-over" class="game-over" hidden>
+      <h1 id="game-over-title">Fin de la partida</h1>
+      <p id="game-over-answer" class="game-over-answer"></p>
+      <p id="game-over-score" class="game-over-score"></p>
+      <p id="game-over-record" class="game-over-record"></p>
+      <button type="button" id="restart-btn" class="choice-btn restart-btn">Jugar de nuevo</button>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

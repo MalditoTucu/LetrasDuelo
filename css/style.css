@@ -1,0 +1,412 @@
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+
+:root {
+  --color-bg: #0A0A0A;
+  --color-surface: #141414;
+  --color-border: #1F1F1F;
+
+  --color-accent: #00E676;
+  --color-accent-hover: #69F0AE;
+
+  --color-text: #FFFFFF;
+  --color-text-secondary: #8A8A8A;
+
+  --color-error: #FF5252;
+
+  --radius: 12px;
+  --transition: 150ms ease;
+
+  --max-width: 900px;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 {
+  margin: 0;
+  color: var(--color-text);
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.error-box {
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.status-box {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
+#app,
+.admin-app {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#loading,
+#list-loading {
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   JUEGO
+   ========================================================================== */
+
+#game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 2rem;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.score-item strong {
+  color: var(--color-text);
+  font-size: 1rem;
+  margin-left: 0.4em;
+}
+
+.lyric {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  line-height: 1.6;
+  font-weight: 600;
+  white-space: pre-wrap;
+  color: var(--color-text);
+}
+
+.choices {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.choice-btn {
+  flex: 1 1 0;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.choice-btn:hover,
+.choice-btn:focus-visible {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.choice-btn:disabled {
+  cursor: default;
+}
+
+.feedback {
+  min-height: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.feedback.correcto {
+  color: var(--color-accent);
+}
+
+.feedback.incorrecto {
+  color: var(--color-error);
+}
+
+.choice-btn.correcto {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.choice-btn.incorrecto {
+  background: var(--color-error);
+  border-color: var(--color-error);
+  color: var(--color-bg);
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.game-over-answer {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.game-over-score,
+.game-over-record {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.restart-btn {
+  margin-top: 1rem;
+  width: auto;
+  padding: 1rem 2.5rem;
+}
+
+/* ==========================================================================
+   PANEL
+   ========================================================================== */
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#panel-section {
+  max-width: 640px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logout-btn {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.logout-btn:hover,
+.logout-btn:focus-visible {
+  color: var(--color-text);
+  border-color: var(--color-accent);
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) / 2);
+  padding: 0.6rem 0.75rem;
+  transition: border-color var(--transition);
+}
+
+.admin-form input:focus-visible,
+.admin-form textarea:focus-visible,
+.admin-form select:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.admin-form textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.admin-form button {
+  align-self: flex-start;
+}
+
+.letras-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.letras-list-section h2 {
+  font-size: 1.1rem;
+}
+
+#list-empty {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+#letras-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#letras-table th {
+  text-align: left;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+#letras-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  font-size: 0.9rem;
+}
+
+.col-letra {
+  max-width: 320px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--color-text-secondary);
+}
+
+.delete-btn {
+  background: transparent;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+  border-radius: calc(var(--radius) / 2);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+
+.delete-btn:hover,
+.delete-btn:focus-visible {
+  background: var(--color-error);
+  color: var(--color-bg);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .choices {
+    flex-direction: column;
+  }
+
+  .panel-header {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  #app,
+  .admin-app {
+    padding: 2rem 1rem;
+  }
+
+  .admin-form {
+    padding: 1rem;
+  }
+
+  .choice-btn {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
