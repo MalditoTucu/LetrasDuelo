@@ -13,7 +13,6 @@ const letraForm = document.getElementById('letra-form');
 const inputLetra = document.getElementById('input-letra');
 const inputArtista = document.getElementById('input-artista');
 const inputCancion = document.getElementById('input-cancion');
-const inputDificultad = document.getElementById('input-dificultad');
 const formError = document.getElementById('form-error');
 const formStatus = document.getElementById('form-status');
 
@@ -103,7 +102,6 @@ letraForm.addEventListener('submit', async (event) => {
     letra: inputLetra.value.trim(),
     artista: inputArtista.value.trim(),
     cancion: inputCancion.value.trim(),
-    dificultad: inputDificultad.value,
   };
 
   if (!nuevaLetra.letra || !nuevaLetra.artista || !nuevaLetra.cancion) {
@@ -119,7 +117,6 @@ letraForm.addEventListener('submit', async (event) => {
   }
 
   letraForm.reset();
-  inputDificultad.value = 'media';
   showStatus(formStatus, 'Letra agregada correctamente.');
   loadLetras();
 });
@@ -165,9 +162,6 @@ function crearFila(fila) {
   const tdCancion = document.createElement('td');
   tdCancion.textContent = fila.cancion;
 
-  const tdDificultad = document.createElement('td');
-  tdDificultad.textContent = fila.dificultad;
-
   const tdBorrar = document.createElement('td');
   const borrarBtn = document.createElement('button');
   borrarBtn.type = 'button';
@@ -176,7 +170,7 @@ function crearFila(fila) {
   borrarBtn.addEventListener('click', () => eliminarLetra(fila.id, tr));
   tdBorrar.appendChild(borrarBtn);
 
-  tr.append(tdLetra, tdArtista, tdCancion, tdDificultad, tdBorrar);
+  tr.append(tdLetra, tdArtista, tdCancion, tdBorrar);
   return tr;
 }
 

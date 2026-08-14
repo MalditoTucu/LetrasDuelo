@@ -4,38 +4,106 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>¿De quién es esta letra?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Bangers&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main id="app">
-    <p id="loading" role="status">Cargando letras…</p>
-
-    <p id="error-message" class="error-box" hidden></p>
-
-    <section id="game" hidden>
-      <div class="scoreboard">
-        <span class="score-item">Puntaje <strong id="score">0</strong></span>
-        <span class="score-item">Récord <strong id="record">0</strong></span>
+  <div id="welcome-modal" class="modal-overlay" hidden>
+    <div class="modal-card">
+      <div id="welcome-step-1" class="modal-step">
+        <h2>¡Bienvenidos!</h2>
+        <p>Este es un juego para Sesión Abierta.</p>
+        <p>Consiste en adivinar a qué artista pertenece la letra que aparece en pantalla.</p>
+        <p>Tiene un par de funciones más — dale a Siguiente para conocerlas.</p>
+        <div class="modal-step-actions">
+          <button type="button" id="welcome-next-btn" class="choice-btn">Siguiente</button>
+          <button type="button" id="welcome-skip-btn" class="choice-btn modal-close-btn">Cerrar</button>
+        </div>
       </div>
-
-      <blockquote id="lyric" class="lyric"></blockquote>
-
-      <div class="choices">
-        <button type="button" id="choice-a" class="choice-btn"></button>
-        <button type="button" id="choice-b" class="choice-btn"></button>
+      <div id="welcome-step-2" class="modal-step" hidden>
+        <h2>Funciones</h2>
+        <p><strong>Chat:</strong> si activás "Detectar ganador", la primera persona del chat que escriba la respuesta correcta gana la ronda automáticamente.</p>
+        <p><strong>Tiempo:</strong> podés configurar cuántos segundos dura cada ronda (o dejarlo sin límite) desde el número al lado del cronómetro.</p>
+        <p class="modal-credits">Créditos: <span class="creator-name">Maldito_Tucumano</span></p>
+        <button type="button" id="welcome-close-btn" class="choice-btn">Empezar</button>
       </div>
+    </div>
+  </div>
 
-      <p id="feedback" class="feedback" aria-live="polite"></p>
-    </section>
+  <header class="site-header">
+    <p class="brand-title">SesionAbierta</p>
+    <img class="brand-logo" src="logo.jpeg" alt="Sesión Abierta TV" />
+  </header>
 
-    <section id="game-over" class="game-over" hidden>
-      <h1 id="game-over-title">Fin de la partida</h1>
-      <p id="game-over-answer" class="game-over-answer"></p>
-      <p id="game-over-score" class="game-over-score"></p>
-      <p id="game-over-record" class="game-over-record"></p>
-      <button type="button" id="restart-btn" class="choice-btn restart-btn">Jugar de nuevo</button>
-    </section>
-  </main>
+  <div class="page-layout">
+    <main id="app">
+      <p id="loading" role="status">Cargando letras…</p>
+
+      <p id="error-message" class="error-box" hidden></p>
+
+      <section id="game" hidden>
+        <div class="scoreboard">
+          <span class="score-item">Puntaje <strong id="score">0</strong></span>
+          <span class="score-item">Récord <strong id="record">0</strong></span>
+        </div>
+
+        <div class="timer">
+          <span id="timer-count" class="timer-count">12</span>
+          <div class="timer-track">
+            <div id="timer-bar" class="timer-bar"></div>
+          </div>
+          <label class="timer-config">
+            Tiempo por ronda
+            <input type="number" id="timer-duracion" min="0" max="200" step="1" value="12" />
+            s (0 = sin límite)
+          </label>
+        </div>
+
+        <p id="chat-ganador-banner" class="chat-ganador-banner" aria-live="polite" hidden></p>
+
+        <div class="lyric-card">
+          <div class="lyric-glow" aria-hidden="true"></div>
+          <blockquote id="lyric" class="lyric"></blockquote>
+        </div>
+
+        <div class="choices">
+          <button type="button" id="choice-a" class="choice-btn"></button>
+          <button type="button" id="choice-b" class="choice-btn"></button>
+        </div>
+
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+
+        <button type="button" id="continuar-btn" class="choice-btn continuar-btn" hidden>Continuar</button>
+      </section>
+
+      <section id="game-over" class="game-over" hidden>
+        <h1 id="game-over-title">Fin de la partida</h1>
+        <p id="game-over-answer" class="game-over-answer"></p>
+        <p id="game-over-score" class="game-over-score"></p>
+        <p id="game-over-record" class="game-over-record"></p>
+        <button type="button" id="restart-btn" class="choice-btn restart-btn">Jugar de nuevo</button>
+      </section>
+    </main>
+
+    <aside class="chat-panel">
+      <div class="chat-panel-header">
+        <p class="chat-panel-title">Chat en vivo</p>
+        <label class="chat-toggle">
+          <input type="checkbox" id="chat-ganador-toggle" />
+          Detectar ganador
+        </label>
+      </div>
+      <iframe
+        src="https://chat.kick.cx/embed/sesionabiertatv"
+        title="Chat de Kick — sesionabiertatv"
+        loading="lazy"
+      ></iframe>
+    </aside>
+
+    <div class="layout-spacer" aria-hidden="true"></div>
+  </div>
 
   <script type="module" src="js/app.js"></script>
 </body>

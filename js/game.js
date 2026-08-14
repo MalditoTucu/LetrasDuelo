@@ -7,6 +7,7 @@ let puntajeActual = 0;
 let estaTerminada = false;
 let esGanada = false;
 let ronda = null;
+let recordAlIniciar = 0;
 
 function mezclar(array) {
   const copia = array.slice();
@@ -60,6 +61,7 @@ export function iniciarPartida(letras) {
   puntajeActual = 0;
   estaTerminada = false;
   esGanada = false;
+  recordAlIniciar = leerRecord();
 
   generarRonda();
   return ronda;
@@ -100,6 +102,10 @@ export function terminada() {
 
 export function esVictoria() {
   return esGanada;
+}
+
+export function esRecordNuevo() {
+  return estaTerminada && puntajeActual > recordAlIniciar;
 }
 
 export function puntaje() {

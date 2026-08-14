@@ -29,7 +29,7 @@ export async function traerLetras() {
   return data;
 }
 
-export async function agregarLetra({ letra, artista, cancion, dificultad }) {
+export async function agregarLetra({ letra, artista, cancion, dificultad = 'media' }) {
   const { error } = await supabase.from('letras').insert({ letra, artista, cancion, dificultad });
 
   if (error) {

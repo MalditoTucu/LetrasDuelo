@@ -4,9 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de administración — Letras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <header class="site-header">
+    <p class="brand-title">SesionAbierta</p>
+    <img class="brand-logo" src="logo.jpeg" alt="Sesión Abierta TV" />
+  </header>
+
   <main id="admin-app" class="admin-app">
     <section id="login-section" class="panel-section" hidden>
       <h1>Panel de administración</h1>
@@ -43,14 +51,6 @@
           Canción
           <input type="text" id="input-cancion" required />
         </label>
-        <label>
-          Dificultad
-          <select id="input-dificultad">
-            <option value="facil">Fácil</option>
-            <option value="media" selected>Media</option>
-            <option value="dificil">Difícil</option>
-          </select>
-        </label>
         <button type="submit" class="choice-btn">Agregar letra</button>
       </form>
 
@@ -68,7 +68,6 @@
                 <th>Letra</th>
                 <th>Artista</th>
                 <th>Canción</th>
-                <th>Dificultad</th>
                 <th></th>
               </tr>
             </thead>
